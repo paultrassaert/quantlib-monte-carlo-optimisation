@@ -22,17 +22,25 @@ The reported benchmark shows roughly **7.91×–8.93× speedups** relative to th
 
 The constant-parameter process follows geometric Brownian motion under the risk-neutral measure:
 
-$$dS_t=(r-q)S_t\,dt+\sigma S_t\,dW_t.$$
+```math
+dS_t=(r-q)S_t\,dt+\sigma S_t\,dW_t.
+```
 
 Its exact time-step evolution is
 
-$$S_{t+\Delta t}=S_t\exp\left((r-q-\tfrac12\sigma^2)\Delta t+\sigma\sqrt{\Delta t}\,Z\right),\qquad Z\sim\mathcal N(0,1).$$
+```math
+S_{t+\Delta t}=S_t\exp\left((r-q-\tfrac12\sigma^2)\Delta t+\sigma\sqrt{\Delta t}\,Z\right),\qquad Z\sim\mathcal N(0,1).
+```
 
 With spot $x$, the conditional expectation and variance are
 
-$$\mathbb E[S_{t+\Delta t}\mid S_t=x]=xe^{(r-q)\Delta t},$$
+```math
+\mathbb E[S_{t+\Delta t}\mid S_t=x]=xe^{(r-q)\Delta t},
+```
 
-$$\operatorname{Var}[S_{t+\Delta t}\mid S_t=x]=x^2e^{2(r-q)\Delta t}\left(e^{\sigma^2\Delta t}-1\right).$$
+```math
+\mathrm{Var}[S_{t+\Delta t}\mid S_t=x]=x^2e^{2(r-q)\Delta t}\left(e^{\sigma^2\Delta t}-1\right).
+```
 
 The helper freezes the risk-free and dividend rates at their continuously compounded maturity zero rates. The current code extracts volatility with `blackVol(maturity, strike)`. This is the final code correction; the report's description using spot instead of strike predates it. Discounting remains tied to the original risk-free term structure.
 
